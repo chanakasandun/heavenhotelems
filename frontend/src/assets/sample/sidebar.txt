@@ -1,0 +1,119 @@
+import * as React from 'react';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import { AppBar, Toolbar, Typography, Box, IconButton } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+
+const drawerWidth = 240;
+
+export default function PermanentDrawerLeft() {
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      
+      {/* App Bar */}
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, backgroundColor: '#ffffff' }}
+      >
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1, color: '#333' }}>
+            Heaven Hotel EMS
+          </Typography>
+          
+          {/* Profile Icon with Yellow Background */}
+          <Box
+            sx={{
+              backgroundColor: '#fde6c7',
+              borderRadius: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 0.5,
+              mr: 1,
+            }}
+          >
+            <IconButton color="inherit">
+              <AccountCircle sx={{ color: '#333' }} />
+            </IconButton>
+          </Box>
+          <Typography variant="subtitle1" sx={{ color: '#333' }}>
+            Chanaka
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      {/* Drawer */}
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            backgroundColor: '#f1f2f7', // New drawer background color
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        {/* Super Admin Label */}
+        <Box sx={{ textAlign: 'center', padding: 2, fontWeight: 'bold', color: '#333' }}>
+          Super Admin
+        </Box>
+
+        <Divider />
+
+        {/* Main Heading with Subheadings */}
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <Typography variant="subtitle1" sx={{ fontWeight: 'bold', color: '#333' }}>
+                Management
+              </Typography>
+            </ListItemButton>
+          </ListItem>
+          {/* Subheadings under Management */}
+          <List component="div" disablePadding sx={{ pl: 4 }}>
+            {['Departments', 'Manning Budget', 'Positions', 'Holiday List', 'Leave Types'].map((text) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <Typography variant="body2" sx={{ color: '#333' }}>
+                    {text}
+                  </Typography>
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          
+          <Divider sx={{ my: 2 }} />
+          
+          {/* Attendance Heading */}
+          <ListItem disablePadding>
+            <ListItemButton>
+              <Typography variant="subtitle1" sx={{ fontWeight: 'bold', color: '#333' }}>
+                Attendance
+              </Typography>
+            </ListItemButton>
+          </ListItem>
+          {/* Subheadings under Attendance */}
+          <List component="div" disablePadding sx={{ pl: 4 }}>
+            {['Daily Attendance', 'Monthly Attendance', 'Leave Balance'].map((text) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <Typography variant="body2" sx={{ color: '#333' }}>
+                    {text}
+                  </Typography>
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </List>
+      </Drawer>
+    </Box>
+  );
+}
